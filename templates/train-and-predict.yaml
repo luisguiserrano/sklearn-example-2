@@ -43,8 +43,7 @@ spec:
 
             save_json(result, 'result.json')
 
-  
     outputs:
       artifacts:
-      - name: predictions
-        path: /app/predictions.json
+      - name: result
+        path: /app/result.json
