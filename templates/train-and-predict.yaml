@@ -34,7 +34,7 @@ spec:
             labels = data["labels"]
             
             model = return_model()
-            train_model(models, features, labels)
+            train_model(model, features, labels)
 
             predictions = predict(model, features)
 
