@@ -5,6 +5,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import SVC
 import json
+from modular.utils import NumpyArrayEncoder
 
 #def build_dataset():
 #    dataset = pd.DataFrame({'x_1':[0,0,1,1,2,2],
