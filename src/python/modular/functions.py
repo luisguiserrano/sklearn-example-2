@@ -35,6 +35,7 @@ def build_dataset():
     result = {}
     result["features"] = features
     result["labels"] = labels
+    return result
 
 def return_model(model_name = "logistic_regression"):
     if model_name == 'logistic_regression':

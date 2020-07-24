@@ -42,5 +42,5 @@ spec:
           - docker-image: z-ml
           - docker-tag: latest
           artifacts:
-          - name: preprocessed_data
-            from: '{{steps.preprocess-data.outputs.artifacts.preprocessed_data}}'
+          - name: data
+            from: '{{steps.load-data.outputs.artifacts.data}}'
