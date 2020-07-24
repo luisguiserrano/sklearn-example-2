@@ -11,7 +11,7 @@ def build_dataset():
                         'x_2':[0,1,0,2,1,2],
                         'y':[0,0,0,1,1,1]})
     result = {}
-    result["dataset"] = dataset
+    result["dataset"] = np.array(dataset)
     return result
 
 def preprocess_data(dataset):

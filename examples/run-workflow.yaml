@@ -22,7 +22,7 @@ spec:
     - s3-key: mine/modular/
 
   templates:
-  - name: modular-workflow
+  - name: sklearn-modular
     steps:
     - - name: load-data
         template: load-data
@@ -41,19 +41,18 @@ spec:
           - resources: [sklearn-modular]
           - docker-image: z-ml
           - docker-tag: latest
+          artifacts:
+          - name: data
+            from: '{{steps.load-data.outputs.artifacts.data}}'
 
     - - name: train-and-predict
-        template: train-model
+        template: train-and-predict
         arguments:
           parameters:
 
-          - hidden_layer: "8"
-          - epochs: "500"
-          - lr: "0.01"
-
-          - resources: [xor-orquestra]
+          - resources: [sklearn-modular]
           - docker-image: z-ml
           - docker-tag: latest
           artifacts:
-          - name: data
-            from: '{{steps.generate-data.outputs.artifacts.data}}'
+          - name: preprocessed_data
+            from: '{{steps.preprocess-data.outputs.artifacts.preprocessed_data}}'
