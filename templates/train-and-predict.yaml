@@ -28,9 +28,9 @@ spec:
             from modular.functions import train_model
             from modular.functions import predict
             
-            preprocessed_data = read_json('preprocessed_data.json')
-            features = preprocessed_data["features"]
-            labels = preprocessed_data["labels"]
+            data = read_json('data.json')
+            features = data["features"]
+            labels = data["labels"]
             
             model = return_model()
             train_model(models, features, labels)

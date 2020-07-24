@@ -15,22 +15,26 @@ import json
 #
 #    return json.dumps(dataset, cls=NumpyArrayEncoder)
 
-def build_dataset():
-    dataset = [[0,0,0],
-               [0,1,0],
-               [1,0,0],
-               [1,2,1],
-               [2,1,1],
-               [2,2,1]]
-    return dataset
+#def build_dataset():
+#    dataset = [[0,0,0],
+#               [0,1,0],
+#               [1,0,0],
+#               [1,2,1],
+#               [2,1,1],
+#               [2,2,1]]
+#    return dataset
 
-def preprocess_data(dataset):
-    features = dataset[:][:-1]
-    labels = dataset[:][-1]
+def build_dataset():
+    features = [[0,0],
+                [0,1],
+                [1,0],
+                [1,2],
+                [2,1],
+                [2,2]]
+    labels = [0,0,0,1,1,1]
     result = {}
     result["features"] = features
     result["labels"] = labels
-    return result
 
 def return_model(model_name = "logistic_regression"):
     if model_name == 'logistic_regression':

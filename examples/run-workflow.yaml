@@ -33,18 +33,6 @@ spec:
           - docker-image: z-ml
           - docker-tag: latest
 
-    - - name: preprocess-data
-        template: preprocess-data
-        arguments:
-          parameters:
-
-          - resources: [sklearn-modular]
-          - docker-image: z-ml
-          - docker-tag: latest
-          artifacts:
-          - name: data
-            from: '{{steps.load-data.outputs.artifacts.data}}'
-
     - - name: train-and-predict
         template: train-and-predict
         arguments:
