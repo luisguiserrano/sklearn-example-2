@@ -22,11 +22,11 @@ def build_dataset():
                [1,2,1],
                [2,1,1],
                [2,2,1]]
-    return np.array(dataset)
+    return dataset
 
 def preprocess_data(dataset):
-    features = dataset[:,:-1]
-    labels = dataset[:,-1]
+    features = dataset[:][:-1]
+    labels = dataset[:][-1]
     result = {}
     result["features"] = features
     result["labels"] = labels
