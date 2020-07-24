@@ -6,17 +6,27 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.svm import SVC
 import json
 
+#def build_dataset():
+#    dataset = pd.DataFrame({'x_1':[0,0,1,1,2,2],
+#                            'x_2':[0,1,0,2,1,2],
+#                            'y':[0,0,0,1,1,1]})
+#    
+#    dataset = np.array(dataset)
+#
+#    return json.dumps(dataset, cls=NumpyArrayEncoder)
+
 def build_dataset():
-    dataset = pd.DataFrame({'x_1':[0,0,1,1,2,2],
-                        'x_2':[0,1,0,2,1,2],
-                        'y':[0,0,0,1,1,1]})
-    result = {}
-    result["dataset"] = np.array(dataset)
-    return result
+    dataset = [[0,0,0],
+               [0,1,0],
+               [1,0,0],
+               [1,2,1],
+               [2,1,1],
+               [2,2,1]]
+    return np.array(dataset)
 
 def preprocess_data(dataset):
-    features = np.array(dataset[['x_1', 'x_2']])
-    labels = np.array(dataset['y'])
+    features = dataset[:,:-1]
+    labels = dataset[:,-1]
     result = {}
     result["features"] = features
     result["labels"] = labels
