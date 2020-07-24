@@ -24,6 +24,7 @@ spec:
         raw:
           data: |
             from modular.utils import save_json 
+            from modular.utils import read_json
             from modular.functions import return_model
             from modular.functions import train_model
             from modular.functions import predict
