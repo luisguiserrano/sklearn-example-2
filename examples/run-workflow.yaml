@@ -1,0 +1,59 @@
+ZapOSApiVersion: v1alpha1
+
+kind: Workflow
+
+resources:
+- name: sklearn-modular
+  type: git
+  parameters:
+    url: "git@github.com:luisguiserrano/sklearn-example-2.git"
+    branch: "master"
+    
+metadata:
+  generateName: sklearn-modular-
+
+spec:
+
+  entrypoint: sklearn-modular
+
+  arguments:
+    parameters:
+    - s3-bucket: quantum-engine
+    - s3-key: mine/modular/
+
+  templates:
+  - name: modular-workflow
+    steps:
+    - - name: load-data
+        template: load-data
+        arguments:
+          parameters:
+
+          - resources: [sklearn-modular]
+          - docker-image: z-ml
+          - docker-tag: latest
+
+    - - name: preprocess-data
+        template: preprocess-data
+        arguments:
+          parameters:
+
+          - resources: [sklearn-modular]
+          - docker-image: z-ml
+          - docker-tag: latest
+
+    - - name: train-and-predict
+        template: train-model
+        arguments:
+          parameters:
+
+          - hidden_layer: "8"
+          - epochs: "500"
+          - lr: "0.01"
+
+          - resources: [xor-orquestra]
+          - docker-image: z-ml
+          - docker-tag: latest
+          artifacts:
+          - name: data
+            from: '{{steps.generate-data.outputs.artifacts.data}}'

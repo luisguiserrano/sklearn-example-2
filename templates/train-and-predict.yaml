@@ -1,0 +1,49 @@
+spec:
+
+  templates:
+
+  - name: train-and-predict
+    parent: generic-task
+
+    inputs:
+
+      parameters:
+      - name: docker-image
+        value: z-ml
+      - name: docker-tag
+        value: latest
+
+      - name: command
+        value: python3 main.py
+
+      artifacts:
+      - name: preprocessed_data
+        path: /app/preprocessed_data.json
+      - name: main-script
+        path: /app/main.py
+        raw:
+          data: |
+            from modular.utils import save_json 
+            from modular.functions import return_model
+            from modular.functions import train_model
+            from modular.functions import predict
+            
+            preprocessed_data = read_json('preprocessed_data.json')
+            features = preprocessed_data["features"]
+            labels = preprocessed_data["labels"]
+            
+            model = return_model()
+            train_model(models, features, labels)
+
+            predictions = predict(model, features)
+
+            result = {}
+            result["predictions"] = predictions
+
+            save_json(result, 'result.json')
+
+  
+    outputs:
+      artifacts:
+      - name: predictions
+        path: /app/predictions.json
